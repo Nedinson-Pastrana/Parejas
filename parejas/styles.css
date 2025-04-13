@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wdth,wght@125,868&display=swap');
 
+* {
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
+}
+
 
 body {
     margin: 0;
@@ -14,12 +21,15 @@ body {
   top: 0;
   width: 100%;
   padding: 10px;
-  background-color: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(7px);
-  -webkit-backdrop-filter: blur(10px);
+  /* background-color: rgba(0, 0, 0, 0.89); */
+  background: rgba(255, 255, 255, 0); /* Fondo semitransparente */
+  backdrop-filter: blur(13px);          /* Aplica el blur */
   z-index: 1;
   font-style: normal;
   padding-left: 15px;
+
+   /* Línea inferior */
+   border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Puedes ajustar el color y opacidad */
 }
 
 .navbar-logo {
@@ -27,9 +37,9 @@ body {
 }
 
 .navbar-logo h1 {
-  margin: 8px 8px;
+  margin: 5px 5px;
   color: white;
-  font-size: 23px;
+  font-size: 22px;
   font-family: "Encode Sans SC", sans-serif;
   font-optical-sizing: auto;
   font-weight: 868;
@@ -41,16 +51,46 @@ body {
   gap: 30px;
   justify-content: center;
   font-family: "Archivo Black", sans-serif;
-  font-weight: 900;
+  font-weight: 100;
   font-style: normal;
-  font-size: 17px;
+  font-size: 16px;
 }
 
 .navbar-menu a {
-  color: white;
+  color: rgb(235, 235, 235);
   text-decoration: none;
   font-weight: 600;
 }
+
+
+
+
+/* DECORACION DEL NAVBAR  */
+.navbar-menu {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.menu-item {
+  padding: 5px 12px;
+  text-decoration: none;
+  border-radius: 35px;
+  border: 2px solid transparent; /* evita el movimiento */
+  transition: all 0.1s ease;
+}
+
+/* Efecto al estar activo */
+.menu-item.active {
+  border: 2px solid #505050c2;
+  
+ 
+  /* box-shadow: 0 0 12px rgba(37, 1, 121, 0.952); 
+  transform: scale(1.05); */
+}
+
+/* FIN DE LA DECORACION */
+
 
 /* SIDEBAR Y EL MENU DEL NAVBAR EN MODO RESPONSIVE */
 
@@ -64,6 +104,19 @@ body {
 
 @media (max-width: 768px) {
 /* From Uiverse.io by vinodjangid07 */ 
+/* Evita selección y resaltado en sidebar y toggle */
+.sidebar,
+.sidebar *,
+.toggle,
+.toggle * {
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  user-select: none;         /* Estándar */
+  -webkit-tap-highlight-color: transparent; /* Quita el flash azul en móviles */
+  outline: none; /* Quita el borde azul al enfocarse */
+}
+
 #checkbox {
   display: none;
 }
@@ -190,6 +243,28 @@ body {
   background-color: #22009e;
 }
 
+/* Overlay oscuro */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+   width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.747);
+  /* backdrop-filter: blur(6px); */
+  z-index: 1000;
+  display: none; /* Oculto por defecto */
+}
+
+/* Mostrar el sidebar y el overlay */
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.overlay.active {
+  display: block;
+}
+
 /* Mostrar sidebar al marcar checkbox */
 #checkbox:checked ~ .sidebar {
   right: 0;
@@ -212,7 +287,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center; /* <- esto centra horizontalmente */
-    background: radial-gradient(ellipse at top left, #15141f, #000000, #220072);
+    background: radial-gradient(ellipse at top left, #000000, #1b0047, #220072);
     
     background-size: 600% 300%;
     animation: waveColors 15s ease-in-out infinite;
@@ -220,7 +295,10 @@ body {
 
   }
 
-  @keyframes waveColors {
+
+/* EFECTO DE FONDO */
+
+  /* @keyframes waveColors {
     0% {
       background-position: 50% ;
       filter: hue-rotate(360deg);
@@ -241,7 +319,9 @@ body {
       background-position: 50% ;
       filter: hue-rotate(500deg);
     }
-  }
+  } */
+
+  /* FIN DEL EFECTO */
   
   /* conecta con personas */
   .hero h2 {
